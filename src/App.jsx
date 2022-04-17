@@ -1,9 +1,8 @@
-import { useState } from "react";
 import { Navbar, Welcome } from "./components";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
-function App() {
+const App=() => {
     return (
         <div>
             <Navbar />

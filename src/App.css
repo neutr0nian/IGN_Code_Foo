@@ -37,14 +37,55 @@
   }
 }
 
+.bottom-right{
+  border-radius: 0.3rem;
+  position: absolute;
+  font-size: small;
+  color: white;
+  background-color: #282c34;
+  font-weight: bold;
+  bottom: 8%; 
+  height: 23px;
+  right: 10%;
+}
+
+.br-line{
+  /* background-color: #7a7f89; */
+  border: 0.5px solid rgb(178, 176, 176);
+}
+
+.cursor-pointer{
+  cursor: pointer;
+}
+
+.container{
+  max-width: 1250px !important;
+}
+
 .ht-500{
   height: 450px;
+}
+
+.img-frame{
+  position: relative;
+}
+
+.title{
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+}
+.thumbnail{
+  position: relative;
+  border-radius: 0.6em;
+  color: #282c34;
+  object-fit: contain;
 }
 
 .vd-frame{
   position: relative;
   border-radius: 0.6rem;
 }
+
 button {
   font-size: calc(10px + 2vmin);
 }

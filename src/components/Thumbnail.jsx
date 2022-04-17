@@ -7,3 +7,5 @@ const Thumbnail = () => {
         </div>
     )
 }
+
+export default Thumbnail;

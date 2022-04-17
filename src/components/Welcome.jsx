@@ -1,82 +1,68 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Col, Container, Row, Stack } from "react-bootstrap";
+import { VideoContext } from "../context/VideoContext";
 import Thumbnail from "./Sidebar";
+import Video from "./Video";
 
 const Welcome = () => {
-    let [videoData, setVideoData] = useState([]);
-    let [videoUrl, setVideoUrl] = useState("");
+    // let [videoData, setVideoData] = useState();
+    // let [videoUrl, setVideoUrl] = useState("");
+    // let [mainVideo, setMainVideo] = useState({});
 
-    const fetchData = async () => {
-        //proxy to fix cors error
-        const proxy = "https://api.allorigins.win/raw?url=";
-        const url = "https://ign-apis.herokuapp.com/";
 
-        let videosUrl = "";
-        try {
-            await fetch(proxy + url, {
-                headers: {
-                    "Content-Type": "application/json",
-                },
-            })
-                .then((response) => response.json())
-                .then((data) => {
-                    // console.log("Here: ", data);
-                    videosUrl = data.endpoints[1].sampleRequest;
-                });
-        } catch (error) {
-            console.log("Could not fetch ", error);
-        }
 
-        try {
-            await fetch(proxy + videosUrl, {
-                headers: {
-                    "Content-Type": "application/json",
-                },
-            })
-                .then((response) => response.json())
-                .then((data) => {
-                    console.log("Here: ", data);
-                    setVideoData(data.data);
-                    handleChange(data.data[0].assets[1].url);
-                });
-        } catch (error) {
-            console.log("Could not fetch ", error);
+    const { setGlobalData, isLoading, setisLoading, fetchData, mainVideo, videoData, setVideoData, getMainVideo } =
+        useContext(VideoContext);
+
+    const videoAPI = "https://ign-apis.herokuapp.com/";
+
+    const getVideoData = async () => {
+        let base = await fetchData(videoAPI);
+        let endPoint = base.endpoints[1].sampleRequest;
+        let data = await fetchData(endPoint);
+        // console.log("setting: ", data.data)
+        setGlobalData(data.data);
+        setVideoData(data.data);
+        if (data.data) {
+            getMainVideo(data.data[0].contentId, data.data);
         }
     };
-    
-    const handleChange = (url) => {
-        setVideoUrl(url);
-    }   
+
+  
 
     useEffect(() => {
-        fetchData();
+        getVideoData();
     }, []);
+
+    // console.log("Main video: ", videoData);
+
     return (
         <div>
-            <Container fluid className="p-3">
+            <Container className="p-3">
                 <Row>
                     <Col md={8} sm={6}>
-                        <video
-                            className="vd-frame"
-                            height="auto"
-                            width="100%"
-                            controls
-                        >
-                            {videoData.length && (
-                                <source
-                                    src={videoUrl}
-                                    type="video/mp4"
-                                />
-                            )}
-                        </video>
+                    {isLoading ? ( <Video data={mainVideo}/>
+                            ): ''}
+                        <div className="pt-3">
+                            <h2 className="title">{mainVideo.title} </h2>
+                            <p>
+                                {mainVideo.desc}
+                            </p>
+                        </div>
                     </Col>
-                    <Col md={4}>
-                        <Stack gap={4}>
-                            <Thumbnail />
-                            <div className="bg-light border">Second item</div>
-                            <div className="bg-light border">Third item</div>
-                            <div className="bg-light border">Second item</div>
-                            <div className="bg-light border">Third item</div>
+                    <Col md={4} sm={6}>
+                        <Stack gap={3}>
+                            {videoData.length ? (
+                               
+                                videoData.map((item, index) => {
+                                    // console.log("item: ", item)                             
+                                   return(
+                                    <Thumbnail key={index} {...item} />
+                                   )
+                                }
+)
+                            ):'Loading video'}
+                            {/* <Thumbnail /> */}
                         </Stack>
                     </Col>
                 </Row>
