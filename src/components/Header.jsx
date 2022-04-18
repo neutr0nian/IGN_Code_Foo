@@ -1,30 +1,85 @@
 import React from "react";
-import { Container, Button, Navbar, Nav, NavDropdown, Form, FormControl } from "react-bootstrap";
-
+import {
+    Container,
+    Button,
+    Navbar,
+    Nav,
+    NavDropdown,
+    Form,
+    FormControl,
+    Badge,
+} from "react-bootstrap";
 
 const Header = () => {
     return (
         <div>
-            <Navbar bg="light" expand="lg">
+            <Navbar bg="light" fixed="top" expand="lg">
                 <Container>
-                    <Navbar.Brand href="#" className="brand"><h2>IGN</h2></Navbar.Brand>
-                    {/* <Navbar.Toggle aria-controls="navbarScroll" /> */}
-                    <Navbar.Collapse id="navbarScroll" className="">
+                    <Navbar.Brand className="brand">
+                        <img
+                            src="src/logo.svg"
+                            width="42"
+                            height="45"
+                            className="align-top"
+                            alt=""
+                        />{''}
+                      IGN
+                    </Navbar.Brand>
+                    <Navbar.Toggle aria-controls="navbarScroll" />
+                    <Navbar.Collapse id="navbarScroll">
                         <Nav
                             className="me-auto my-2 my-lg-0"
                             style={{ maxHeight: "100px" }}
                             navbarScroll
-                        >
-                        </Nav>
-                        <Form className="w-500">
+                        ></Nav>
+                        <Nav.Item>
+                            <Nav.Link className="text-dark wt-500" href="#">
+                                News
+                            </Nav.Link>
+                        </Nav.Item>
+                        <Nav.Item>
+                            <Nav.Link
+                                className="text-dark wt-500"
+                                eventKey="link-1"
+                            >
+                                Videos
+                            </Nav.Link>
+                        </Nav.Item>
+                        <Nav.Item>
+                            <Nav.Link className="text-dark wt-500" href="#">
+                                Reviews
+                            </Nav.Link>
+                        </Nav.Item>
+                        <Nav.Item>
+                            <Nav.Link
+                                className="text-dark wt-500"
+                                eventKey="link-1"
+                            >
+                                Shows
+                            </Nav.Link>
+                        </Nav.Item>
+                        <Nav.Item>
+                            <Nav.Link
+                                className="text-dark wt-500"
+                                eventKey="link-1"
+                            >
+                                Wikis
+                            </Nav.Link>
+                        </Nav.Item>
+                        <Button className="wt-500" variant="light">
+                            Profile{" "}
+                            <Badge className="ml-2" bg="danger">
+                                9
+                            </Badge>
+                        </Button>
+                        {/* <Form className="w-500">
                             <FormControl
                                 type="search"
                                 placeholder="Search"
                                 className="me-2"
                                 aria-label="Search"
                             />
-                            {/* <Button variant="outline-success">Search</Button> */}
-                        </Form>
+                        </Form> */}
                     </Navbar.Collapse>
                 </Container>
             </Navbar>
