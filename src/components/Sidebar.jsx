@@ -10,7 +10,6 @@ const Thumbnail = (
             metadata,
         }
 ) => {
-    // console.log(id)
     const { getMainVideo } = useContext(VideoContext);
     return (
         <div className="bg-light">
@@ -28,7 +27,7 @@ const Thumbnail = (
                     <p className="pr-2">
                         {
                             metadata.title.length > 49 ?
-                            metadata.title.slice(0,48)
+                            metadata.title.slice(0,48) + "..."
                             : metadata.title
                         }
                     </p>

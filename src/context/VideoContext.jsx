@@ -8,6 +8,8 @@ export const VideoProvider = ({ children }) => {
     const [videoData, setVideoData] = useState([]);
     const [mainVideo, setMainVideo] = useState({});
     const [globalData, setGlobalData] = useState([]);
+    const [status, setStatus] = useState();
+    const [nextVideo, setNextVideo] = useState(0);
 
     const fetchData = async (url) => {
         //proxy to fix cors error
@@ -31,12 +33,21 @@ export const VideoProvider = ({ children }) => {
 
     const getMainVideo = (id, data) => {
         // console.log("MAIN:", globalData);
+        // console.log("next video: ", nextVideo);
 
         let [matchingVid, filteredVid] = data
             ? filterVideo(id, data)
             : filterVideo(id, videoData);
-        console.log("Matching: ", matchingVid, filteredVid);
+        // console.log("Matching: ", matchingVid, filteredVid);
+
         let videoObj = matchingVid[0];
+        let nextVideoId = videoObj.id + 1;
+        
+        if(globalData.length){
+            setNextVideo(globalData[nextVideoId].contentId);
+        }else{
+            setNextVideo(data[nextVideoId].contentId);
+        }
 
         let videoDetails = {};
 
@@ -59,9 +70,15 @@ export const VideoProvider = ({ children }) => {
 
     // setisLoading(false);
     const filterVideo = (id, data) => {
+        // console.log("Id and data:", id, data)
         setisLoading(false);
         let d = globalData.length ? globalData : data;
-        let match = d.filter((item) => item.contentId == id);
+        let match = d.filter((item, index) => {
+            if(item.contentId == id){
+                item["id"] = index;
+                return item;
+            }
+        });
         let filter = data.filter((item) => item.contentId != id);
         // console.log(match, filter)
         return [match, filter];
@@ -79,6 +96,9 @@ export const VideoProvider = ({ children }) => {
                 getMainVideo,
                 isLoading,
                 setisLoading,
+                status,
+                setStatus,
+                nextVideo,
             }}
         >
             {children}
