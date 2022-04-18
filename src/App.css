@@ -49,9 +49,26 @@
   right: 10%;
 }
 
+.brand{
+  font-family: 'Mallanna', sans-serif;
+  font-size: 70px;
+  font-weight: 800;
+}
+
 .br-line{
   /* background-color: #7a7f89; */
   border: 0.5px solid rgb(178, 176, 176);
+}
+
+.load-btn{
+  background-color: rgb(177, 7, 7);
+  border: none;
+  border-radius: 0.3rem;
+  color: white;
+  font-size: 16px;
+  font-weight: 550;
+  font-family: sans-serif;
+  padding: 8px 4px 8px 4px;
 }
 
 .cursor-pointer{
@@ -70,6 +87,13 @@
   position: relative;
 }
 
+.overlay {
+  position:absolute;
+  top:5px;
+  left:10px;
+  z-index:1;
+}
+
 .title{
   font-family: 'Roboto', sans-serif;
   font-weight: 700;
@@ -84,8 +108,9 @@
 .vd-frame{
   position: relative;
   border-radius: 0.6rem;
+  z-index: 0;
 }
 
-button {
-  font-size: calc(10px + 2vmin);
+.vd{
+  position:relative;
 }

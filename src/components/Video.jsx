@@ -4,22 +4,25 @@ const Video = (props) => {
     // props.loading(false);
     const videoRef = useRef();
 
-    useEffect(()=>{
+    useEffect(() => {
         videoRef.current?.load();
-    },[props.data.url])
+    }, [props.data.url]);
 
-    return(
-    <video
-        className="vd-frame cursor-pointer"
-        height="auto"
-        width="100%"
-        controls
-        ref={videoRef}
-        id={props.data.contentId}
-    >
-        <source src={props.data.url} type="video/mp4" />
-    </video>
+    return (
+        <div className="vd">
+            <video
+                className="vd-frame  cursor-pointer"
+                height="auto"
+                width="100%"
+                controls
+                ref={videoRef}
+                id={props.data.contentId}
+            >
+                <source src={props.data.url} type="video/mp4" />
+            </video>
+            <p className="overlay text-white">Here goes the title</p>
+        </div>
     );
-}
+};
 
 export default Video;

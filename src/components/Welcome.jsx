@@ -9,6 +9,7 @@ const Welcome = () => {
     // let [videoUrl, setVideoUrl] = useState("");
     // let [mainVideo, setMainVideo] = useState({});
 
+    const [loadMore, setLoadMore] = useState(false);
 
 
     const { setGlobalData, isLoading, setisLoading, fetchData, mainVideo, videoData, setVideoData, getMainVideo } =
@@ -54,15 +55,24 @@ const Welcome = () => {
                         <Stack gap={3}>
                             {videoData.length ? (
                                
-                                videoData.map((item, index) => {
+                                !loadMore ? (videoData.slice(0,5).map((item, index) => {
                                     // console.log("item: ", item)                             
                                    return(
                                     <Thumbnail key={index} {...item} />
                                    )
                                 }
-)
+                                )) : (videoData.map((item, index) => {
+                                    // console.log("item: ", item)                             
+                                   return(
+                                    <Thumbnail key={index} {...item} />
+                                   )
+                                }
+                                ))
                             ):'Loading video'}
                             {/* <Thumbnail /> */}
+                            <button className="load-btn" onClick={()=>setLoadMore(!loadMore)}> 
+                                {loadMore? "Show Less" : "Load More"}
+                            </button>
                         </Stack>
                     </Col>
                 </Row>
