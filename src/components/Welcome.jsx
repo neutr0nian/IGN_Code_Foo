@@ -68,11 +68,11 @@ const Welcome = () => {
                                    )
                                 }
                                 ))
-                            ):'Loading video'}
-                            {/* <Thumbnail /> */}
+                            ):''}
                             <button className="load-btn" onClick={()=>setLoadMore(!loadMore)}> 
                                 {loadMore? "Show Less" : "Load More"}
                             </button>
+                       
                         </Stack>
                     </Col>
                 </Row>

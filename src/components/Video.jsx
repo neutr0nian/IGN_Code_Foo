@@ -3,10 +3,12 @@ import { VideoContext } from "../context/VideoContext";
 
 const Video = (props) => {
 
+    // console.log(props.data)
+    const data = props.data;
     const { getMainVideo, nextVideo } = useContext(VideoContext);
     // props.loading(false);
     const videoRef = useRef();
-    const [time, setTime] = useState(0);
+    const [isPause, setIsPause] = useState(true);
     
     useEffect(() => {
         videoRef.current?.load();
@@ -16,6 +18,7 @@ const Video = (props) => {
         let currentTime = event.target.currentTime;
         let duration = event.target.duration;
 
+        setIsPause(true);
         console.log(duration, currentTime)
             if(currentTime == duration){
                 console.log("close interval")
@@ -30,12 +33,14 @@ const Video = (props) => {
                 width="100%"
                 controls
                 ref={videoRef}
-                id={props.data.contentId}
+                poster={data.cover.url}
+                id={data.contentId}
+                onPlay={()=>setIsPause(false)}
                 onPause ={handleChange}
             >
                 <source src={props.data.url} type="video/mp4" />
             </video>
-            <p className="overlay text-white">Here goes the title</p>
+            <p className= {`${isPause?"overlay ": ""}`+  "text-white"}>Here goes the title</p>
         </div>
     );
 };

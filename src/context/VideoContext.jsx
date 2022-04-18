@@ -64,7 +64,6 @@ export const VideoProvider = ({ children }) => {
             setVideoData([...filteredVid, m]);
         } else setVideoData([...filteredVid]);
         setMainVideo(videoDetails);
-        // console.log()
         setisLoading(true);
     };
 
