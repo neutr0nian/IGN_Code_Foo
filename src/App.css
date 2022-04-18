@@ -71,6 +71,12 @@
   padding: 8px 4px 8px 4px;
 }
 
+.btn-overlay{
+  position:absolute;
+  top:390px;
+  left: 535px;
+  z-index:1;
+}
 .cursor-pointer{
   cursor: pointer;
 }
@@ -81,6 +87,10 @@
 
 .ht-500{
   height: 450px;
+}
+
+.hide{
+  visibility: none;
 }
 
 .img-frame{

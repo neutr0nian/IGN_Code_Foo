@@ -5,7 +5,7 @@ const Video = (props) => {
 
     // console.log(props.data)
     const data = props.data;
-    const { getMainVideo, nextVideo } = useContext(VideoContext);
+    const { getMainVideo, nextVideo, cinemaMode, setCinemaMode } = useContext(VideoContext);
     // props.loading(false);
     const videoRef = useRef();
     const [isPause, setIsPause] = useState(true);
@@ -34,13 +34,15 @@ const Video = (props) => {
                 controls
                 ref={videoRef}
                 poster={data.cover.url}
+                preload="auto"
                 id={data.contentId}
                 onPlay={()=>setIsPause(false)}
                 onPause ={handleChange}
             >
                 <source src={props.data.url} type="video/mp4" />
             </video>
-            <p className= {`${isPause?"overlay ": ""}`+  "text-white"}>Here goes the title</p>
+           {isPause && <p className= "overlay text-white">Here goes the title</p>}
+           <button className="btn-overlay" onClick={()=>setCinemaMode(!cinemaMode)}>[ ]</button>
         </div>
     );
 };

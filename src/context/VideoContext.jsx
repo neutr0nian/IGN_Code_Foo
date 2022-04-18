@@ -10,7 +10,8 @@ export const VideoProvider = ({ children }) => {
     const [globalData, setGlobalData] = useState([]);
     const [status, setStatus] = useState();
     const [nextVideo, setNextVideo] = useState(0);
-
+    const [cinemaMode, setCinemaMode] = useState(false);
+    
     const fetchData = async (url) => {
         //proxy to fix cors error
         let res;
@@ -98,6 +99,8 @@ export const VideoProvider = ({ children }) => {
                 status,
                 setStatus,
                 nextVideo,
+                cinemaMode,
+                setCinemaMode,
             }}
         >
             {children}
