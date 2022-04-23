@@ -39,7 +39,7 @@ const Welcome = () => {
 
     return (
         <div>
-            <Container className="p-3" style={{"margin-top": "72px"}}>
+            <Container className="p-3" style={{"marginTop": "72px"}}>
                 <Row>
                     <Col md={8} sm={6}>
                     {isLoading ? ( <Video data={mainVideo}/>

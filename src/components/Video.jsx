@@ -26,9 +26,9 @@ const Video = (props) => {
             }
     }
     return (
-        <div className="vd">
+        <div className="vd ">
             <video
-                className="vd-frame  cursor-pointer"
+                className="vd-frame cursor-pointer"
                 height="auto"
                 width="100%"
                 controls
@@ -41,6 +41,7 @@ const Video = (props) => {
             >
                 <source src={props.data.url} type="video/mp4" />
             </video>
+            <div className={isPause?"vd-overlay": ''}></div>
            {isPause && <p className= "overlay text-white">{data.title}</p>}
         </div>
     );
