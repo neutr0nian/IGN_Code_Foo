@@ -23,7 +23,7 @@ export const VideoProvider = ({ children }) => {
             })
                 .then((response) => response.json())
                 .then((data) => {
-                    // console.log("Here: ", data);
+                    console.log("Here: ", data);
                     res = data;
                 });
         } catch (error) {
